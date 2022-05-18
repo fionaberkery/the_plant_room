@@ -95,7 +95,18 @@ const PlantContainter = () => {
     })
 
 
-    
+    let componentToShow 
+
+    if (selectedPlant) {
+        componentToShow = <PlantDetail onGoBackClick={onGoBackClick} selectedPlant={selectedPlant} setSelectedPlant={selectedPlant} onAddToBasket={onAddToBasket}/>
+    } else if (selectedBasket) {
+        componentToShow =  <ShoppingBasket theShoppingBasket={theShoppingBasket}/>
+    } else {
+        componentToShow =  <PlantList plants={plants} onImageClick={onImageClick}/>
+    } 
+
+
+    // return componentToShow
     
     return (
         <>
@@ -104,11 +115,9 @@ const PlantContainter = () => {
             <button onClick={handleViewBasket} > Go to Basket </button>
         
             
-            
+            {componentToShow}
 
-            {selectedPlant ? <PlantDetail onGoBackClick={onGoBackClick} selectedPlant={selectedPlant} setSelectedPlant={selectedPlant} onAddToBasket={onAddToBasket}/> : <PlantList plants={plants} onImageClick={onImageClick}/>}
             
-            <ShoppingBasket theShoppingBasket={theShoppingBasket}/>
 
         </>
     )
