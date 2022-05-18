@@ -4,8 +4,9 @@ const ShoppingBasket = ({theShoppingBasket}) => {
 
     return (
         <>
+        <hr></hr>
         <h1> Shopping Basket </h1>
-        <br></br><br></br><br></br>
+        
             <p>
                 {theShoppingBasket}
             </p>

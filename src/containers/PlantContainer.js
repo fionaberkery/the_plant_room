@@ -70,12 +70,12 @@ const PlantContainter = () => {
 
     const [selectedPlant, setSelectedPlant] = useState(null)
     const [shoppingBasket, setShoppingBasket] = useState([])
-    const [selectedBasket, setSelectedBasket] = useState(false)
+    const [selectedBasket, setSelectedBasket] = useState(null)
 
     const handleViewBasket = () => {
-      setSelectedBasket(true)
-  
-  }
+        setSelectedBasket(true)}
+        
+
 
     const onImageClick = (plant) => {
         setSelectedPlant(plant)
@@ -94,19 +94,21 @@ const PlantContainter = () => {
         return ( <p> {item} </p>)
     })
 
+
     
     
     return (
         <>
             <h1> The Plant Room </h1>
-            <button onClick={handleViewBasket}> Go to Basket </button>
+
+            <button onClick={handleViewBasket} > Go to Basket </button>
         
-        
-            {selectedBasket ? <ShoppingBasket theShoppingBasket={theShoppingBasket}/> : null}
+            
+            
 
             {selectedPlant ? <PlantDetail onGoBackClick={onGoBackClick} selectedPlant={selectedPlant} setSelectedPlant={selectedPlant} onAddToBasket={onAddToBasket}/> : <PlantList plants={plants} onImageClick={onImageClick}/>}
             
-            
+            <ShoppingBasket theShoppingBasket={theShoppingBasket}/>
 
         </>
     )
