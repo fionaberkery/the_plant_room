@@ -5,6 +5,8 @@ import plant1 from "/Users/fionaberkery/CodeClan_work/week_8/day_3/all_day_lab/t
 import plant2 from "/Users/fionaberkery/CodeClan_work/week_8/day_3/all_day_lab/the_plant_room/src/images/plant2.webp"
 import plant3 from "/Users/fionaberkery/CodeClan_work/week_8/day_3/all_day_lab/the_plant_room/src/images/plant3.webp"
 import plant4 from "/Users/fionaberkery/CodeClan_work/week_8/day_3/all_day_lab/the_plant_room/src/images/plant4.webp"
+import ShoppingBasket from "../components/ShoppingBasket";
+import PlantItem from "../components/PlantItem";
 
 const PlantContainter = () => {
 
@@ -67,6 +69,13 @@ const PlantContainter = () => {
     ])
 
     const [selectedPlant, setSelectedPlant] = useState(null)
+    const [shoppingBasket, setShoppingBasket] = useState([])
+    const [selectedBasket, setSelectedBasket] = useState(false)
+
+    const handleViewBasket = () => {
+      setSelectedBasket(true)
+  
+  }
 
     const onImageClick = (plant) => {
         setSelectedPlant(plant)
@@ -75,12 +84,28 @@ const PlantContainter = () => {
     const onGoBackClick = () => {
         setSelectedPlant(null)
     }
+
+    const onAddToBasket = (plant) => {
+        const basketItems = [...shoppingBasket, plant]
+        setShoppingBasket(basketItems)
+    }
+
+    const theShoppingBasket = shoppingBasket.map((item) => {
+        return ( <p> {item} </p>)
+    })
+
+    
     
     return (
         <>
             <h1> The Plant Room </h1>
+            <button onClick={handleViewBasket}> Go to Basket </button>
+        
+        
+            {selectedBasket ? <ShoppingBasket theShoppingBasket={theShoppingBasket}/> : null}
 
-            {selectedPlant ? <PlantDetail onGoBackClick={onGoBackClick} selectedPlant={selectedPlant} setSelectedPlant={selectedPlant}/> : <PlantList plants={plants} onImageClick={onImageClick}/>}
+            {selectedPlant ? <PlantDetail onGoBackClick={onGoBackClick} selectedPlant={selectedPlant} setSelectedPlant={selectedPlant} onAddToBasket={onAddToBasket}/> : <PlantList plants={plants} onImageClick={onImageClick}/>}
+            
             
 
         </>

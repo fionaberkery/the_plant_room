@@ -1,9 +1,13 @@
 import React from "react";
 
-const PlantDetail = ({selectedPlant, onGoBackClick}) => {
+const PlantDetail = ({selectedPlant, onGoBackClick, onAddToBasket}) => {
 
     const handleGoBack = () => {
         onGoBackClick()
+    }
+
+    const handleAddToBasket = (plant) => {
+        onAddToBasket(plant.target.value)
     }
 
     return (
@@ -21,7 +25,7 @@ const PlantDetail = ({selectedPlant, onGoBackClick}) => {
                 <p>Pot size :{selectedPlant.description.pot_size}</p>
             </div>
 
-        <button> Add to basket </button>
+        <button onClick={handleAddToBasket} value={selectedPlant.name}> Add to basket </button>
 
         </>
 
